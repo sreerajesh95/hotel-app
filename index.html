@@ -1,47 +1,67 @@
-<!DOCTYPE html>
-<html>
+<<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Luxury Hotel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+<header>
+    <div class="logo">Raj Hotel</div>
+
+    <nav>
+        <a href="#rooms">Rooms</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
         <h1>Luxury Hotel</h1>
-        <nav>
-            <a href="#rooms">Rooms</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+        <p>Experience Comfort, Elegance & Luxury</p>
+        <a href="#rooms" class="btn">Book Now</a>
+    </div>
+</section>
 
-    <section class="hero">
-        <h2>Welcome to Luxury Hotel</h2>
-        <p>Your comfort is our priority</p>
-    </section>
+<section id="rooms" class="section">
+    <h2>Our Rooms</h2>
 
-    <section id="rooms">
-        <h2>Our Rooms</h2>
-        <div class="room">
+    <div class="room-container">
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Deluxe Room">
             <h3>Deluxe Room</h3>
             <p>₹5,000 per night</p>
         </div>
-        <div class="room">
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461" alt="Suite Room">
             <h3>Suite Room</h3>
             <p>₹8,000 per night</p>
         </div>
-    </section>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Experience luxury and comfort in the heart of the city.</p>
-    </section>
+    </div>
+</section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: info@luxuryhotel.com</p>
-        <p>Phone: +91 9876543210</p>
-    </section>
+<section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+        Experience luxury and comfort in the heart of the city with
+        world-class service and premium rooms.
+    </p>
+</section>
+
+<section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Email: info@luxuryhotel.com</p>
+    <p>Phone: +91 9876543210</p>
+</section>
+
+<footer>
+    <p>© 2026 Luxury Hotel. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>

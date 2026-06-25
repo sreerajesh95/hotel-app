@@ -24,12 +24,12 @@ jobs:
 
             git pull origin main
 
-            docker stop box || true
-            docker rm box || true
+            sudo docker stop box || true
+            sudo docker rm box || true
 
-            docker build -t photo .
+            sudo docker build -t photo .
 
-            docker run -d \
+            sudo docker run -d \
               --name box \
               -p 80:80 \
               photo

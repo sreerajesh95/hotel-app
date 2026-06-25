@@ -3,10 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main
-
-env:
- IMAGE_NAME: sreerajesh03/hotel-app   
+      - main 
 
 jobs:
   deploy:

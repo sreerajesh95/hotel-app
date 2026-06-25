@@ -1,41 +1,35 @@
-name: Auto Deploy
-
-on:
-
-push:
-
-branches:
-
-main
-
-jobs:
-
-deploy:
-
-runs-on: ubuntu-latest
-
-steps:
-
 name: Deploy to EC2
 
-uses: appleboy/ssh-action@v1.0.3
+on:
+  push:
+    branches:
+      - main
 
-with:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-host: ${{ secrets.EC2_HOST }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-username: ${{ secrets.EC2_USER }}
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/hotel-app
 
-key: ${{ secrets.EC2_SSH_KEY }}
+            git pull origin main
 
-script: |
+            docker stop box || true
+            docker rm box || true
 
-cd ~/hotel-app
+            docker build -t photo .
 
-git pull origin main
-
-docker stop hotel || truedocker rm hotel || true
-
-docker build -t hotel .
-
-docker run -d --name hotel -p 80:80 hotel
+            docker run -d \
+              --name box \
+              -p 80:80 \
+              photo

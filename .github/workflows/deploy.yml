@@ -20,10 +20,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t sreerajesh03/ravi:latest .
+        run: |
+          docker build -t sreerajesh03/rajesh:latest .
 
       - name: Push Docker Image
-        run: docker push sreerajesh03/ravi:latest
+        run: |
+          docker push sreerajesh03/rajesh:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.0
@@ -32,15 +34,15 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull sreerajesh03/ravi:latest
+            docker pull sreerajesh03/rajesh:latest
 
-            docker stop box || true
-            docker rm box || true
+            docker stop hapag || true
+            docker rm hapag || true
 
             docker run -d \
-              --name box \
+              --name hapag \
               --restart always \
               -p 80:80 \
-              sreerajesh03/ravi:latest
+              sreerajesh03/rajesh:latest
 
             docker image prune -f

@@ -21,11 +21,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t sreerajesh03/rajesh:latest .
+          docker build -t sreerajesh03/my-image:latest .
 
       - name: Push Docker Image
         run: |
-          docker push sreerajesh03/rajesh:latest
+          docker push sreerajesh03/my-image:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.0
@@ -34,15 +34,19 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull sreerajesh03/rajesh:latest
+            docker pull sreerajesh03/my-image:latest
 
             docker stop hapag || true
             docker rm hapag || true
+
+            docker rmi sreerajesh03/my-image:latest || true
+
+            docker pull sreerajesh03/my-image:latest
 
             docker run -d \
               --name hapag \
               --restart always \
               -p 80:80 \
-              sreerajesh03/rajesh:latest
+              sreerajesh03/my-image:latest
 
             docker image prune -f

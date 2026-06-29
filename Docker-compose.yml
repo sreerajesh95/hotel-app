@@ -1,0 +1,7 @@
+services:
+  hotel-app:
+    image: sreerajesh03/my-image:latest
+    container_name: hotel-app
+    restart: always
+    ports:
+      - "80:80"
